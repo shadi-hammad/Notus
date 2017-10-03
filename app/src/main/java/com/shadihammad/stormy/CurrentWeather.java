@@ -17,10 +17,28 @@ public class CurrentWeather {
     private double mTemperature;
     private double mHumidity;
     private double mPrecipChance;
+    private double mWindSpeed;
+    private double mVisibility;
     private String mSummary;
     private String mTimeZone;
     private String mColor;
 
+
+    public double getmWindSpeed() {
+        return mWindSpeed;
+    }
+
+    public void setmWindSpeed(double mWindSpeed) {
+        this.mWindSpeed = mWindSpeed;
+    }
+
+    public double getmVisibility() {
+        return mVisibility;
+    }
+
+    public void setmVisibility(double mVisibility) {
+        this.mVisibility = mVisibility;
+    }
 
     public String getmTimeZone() {
         return mTimeZone;

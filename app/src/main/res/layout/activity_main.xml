@@ -5,11 +5,12 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@android:color/white"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    tools:background="@android:color/black"
     tools:context="com.shadihammad.stormy.MainActivity">
 
     <TextView
@@ -64,9 +65,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/temperatureLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="23dp"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -88,10 +89,35 @@
                 android:id="@+id/humidityValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
                 android:gravity="center_horizontal"
                 android:text="--"
                 android:textColor="@android:color/white"
                 android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/windspeedLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="WIND (mph)"
+                    android:textColor="#80ffffff" />
+
+                <TextView
+                    android:id="@+id/windspeedValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="--"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -106,17 +132,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="RAIN/SNOW?"
+                android:text="PRECIP"
                 android:textColor="#80ffffff" />
 
             <TextView
                 android:id="@+id/precipValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
                 android:gravity="center_horizontal"
                 android:text="--"
                 android:textColor="@android:color/white"
                 android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/visibilityLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="VISIBILITY"
+                    android:textColor="#80ffffff" />
+
+                <TextView
+                    android:id="@+id/visibilityValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="--"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -125,9 +177,9 @@
         android:id="@+id/summaryLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
+        android:layout_above="@+id/timeLabel"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center_horizontal"
         android:text="Getting current weather..."
         android:textColor="@android:color/white"
@@ -140,7 +192,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:paddingTop="0dp"
-        app:srcCompat="@drawable/refresh" />
+        app:srcCompat="@drawable/material_refresh_button" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -155,6 +207,7 @@
         android:layout_alignTop="@id/refreshImageView"
         android:layout_alignWithParentIfMissing="false"
         android:layout_centerHorizontal="true" />
+
 </android.widget.RelativeLayout>
 
 

@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.refreshImageView) ImageView mRefreshImageView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
     @BindView(R.id.locationLabel) TextView mLocationLabel;
+    @BindView(R.id.windspeedValue) TextView mWindspeedValue;
+    @BindView(R.id.visibilityValue) TextView mVisibilityValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        location = locationManager.getLastKnownLocation("gps");
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
+
+        if (locationManager.getLastKnownLocation("gps") != null) {
+            location = locationManager.getLastKnownLocation("gps");
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+        }
+        else {
+            Toast.makeText(this, "Please hit the refresh button to receive accurate info",
+                    Toast.LENGTH_LONG).show();
+        }
 
         locationListener = new LocationListener() {
             @Override
@@ -142,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configureLocation() {
-        locationManager.requestLocationUpdates("gps", 30000, 0, locationListener);
+        locationManager.requestLocationUpdates("gps", 120000, 0, locationListener);
     }
 
     @Override
@@ -234,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
         mSummaryLabel.setText(mCurrentWeather.getmSummary());
         mIconImageView.setImageResource(mCurrentWeather.getIconId());
         mLocationLabel.setText(getCity());
+        mWindspeedValue.setText(mCurrentWeather.getmWindSpeed() + "");
+        mVisibilityValue.setText(mCurrentWeather.getmVisibility() + "");
         mMainLayout.setBackgroundColor(mCurrentWeather.getmColor());
 
     }
@@ -253,6 +264,8 @@ public class MainActivity extends AppCompatActivity {
         currentWeather.setmPrecipChance(currently.getDouble("precipProbability"));
         currentWeather.setmSummary(currently.getString("summary"));
         currentWeather.setmTimeZone(timezone);
+        currentWeather.setmWindSpeed(currently.getDouble("windSpeed"));
+        currentWeather.setmVisibility(currently.getDouble("visibility"));
 
         Log.d(TAG, currentWeather.getFormattedTime());
 
