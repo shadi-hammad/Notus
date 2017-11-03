@@ -1,6 +1,8 @@
-package com.shadihammad.stormy;
+package com.shadihammad.stormy.weather;
 
 import android.graphics.Color;
+
+import com.shadihammad.stormy.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +12,7 @@ import java.util.TimeZone;
  * Created by fadir on 9/11/2017.
  */
 
-public class CurrentWeather {
+public class Current {
 
     private String mIcon;
     private long mTime;
@@ -21,7 +23,6 @@ public class CurrentWeather {
     private double mVisibility;
     private String mSummary;
     private String mTimeZone;
-    private String mColor;
 
 
     public double getmWindSpeed() {
@@ -57,55 +58,7 @@ public class CurrentWeather {
     }
 
     public int getIconId() {
-        // clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
-        int iconId = R.drawable.clear_day;
-        mColor = "#FFFC970B";
-
-        if (mIcon.equals("clear-day")) {
-            iconId = R.drawable.clear_day;
-        }
-        else if (mIcon.equals("clear-night")) {
-            iconId = R.drawable.clear_night;
-            mColor = "#2e4482";
-        }
-        else if (mIcon.equals("rain")) {
-            iconId = R.drawable.rain;
-            mColor = "#87889c";
-        }
-        else if (mIcon.equals("snow")) {
-            iconId = R.drawable.snow;
-            mColor = "#d6d8da";
-        }
-        else if (mIcon.equals("sleet")) {
-            iconId = R.drawable.sleet;
-            mColor = "#d6d8da";
-        }
-        else if (mIcon.equals("wind")) {
-            iconId = R.drawable.wind;
-        }
-        else if (mIcon.equals("fog")) {
-            iconId = R.drawable.fog;
-            mColor = "#87889c";
-        }
-        else if (mIcon.equals("cloudy")) {
-            iconId = R.drawable.cloudy;
-            mColor = "#87889c";
-        }
-        else if (mIcon.equals("partly-cloudy-day")) {
-            iconId = R.drawable.partly_cloudy;
-            mColor = "#FFFC970B";
-        }
-        else if (mIcon.equals("partly-cloudy-night")) {
-            iconId = R.drawable.cloudy_night;
-        }
-
-        return iconId;
-    }
-
-    public int getmColor() {
-        int colorAsInt = Color.parseColor(mColor);
-
-        return colorAsInt;
+        return Forecast.getIconId(mIcon);
     }
 
     public long getmTime() {

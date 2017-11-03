@@ -1,4 +1,4 @@
-package com.shadihammad.stormy;
+package com.shadihammad.stormy.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
