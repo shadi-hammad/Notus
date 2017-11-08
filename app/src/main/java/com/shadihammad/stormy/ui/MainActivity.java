@@ -55,6 +55,7 @@ MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
+    private static final int PERMISSIONS_REQUEST_CODE = 10;
 
     private Forecast mForecast;
     private LocationManager locationManager;
@@ -82,6 +83,43 @@ MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{
+                        Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET }, PERMISSIONS_REQUEST_CODE);
+            }
+            else {
+                setUpLocation();
+
+                mProgressBar.setVisibility(View.INVISIBLE);
+
+                mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getForecast(latitude, longitude);
+                    }
+                });
+
+                getForecast(latitude, longitude);
+            }
+        }
+        else {
+            setUpLocation();
+
+            mProgressBar.setVisibility(View.INVISIBLE);
+
+            mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getForecast(latitude, longitude);
+                }
+            });
+
+            getForecast(latitude, longitude);
+        }
+    }
+
+    private void setUpLocation() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         if (locationManager.getLastKnownLocation("gps") != null) {
@@ -125,22 +163,11 @@ MainActivity extends AppCompatActivity {
                         Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET }, 10);
             }
 
-            return;
         }
         else {
             configureLocation();
         }
 
-        mProgressBar.setVisibility(View.INVISIBLE);
-
-        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getForecast(latitude, longitude);
-            }
-        });
-
-        getForecast(latitude, longitude);
     }
 
     private String getCity() {
@@ -168,11 +195,21 @@ MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 10:
-                if (grantResults.length > 10 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                        configureLocation();
-                    return;
+        if (requestCode == PERMISSIONS_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                setUpLocation();
+
+                mProgressBar.setVisibility(View.INVISIBLE);
+
+                mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getForecast(latitude, longitude);
+                    }
+                });
+
+                getForecast(latitude, longitude);
+            }
         }
     }
 
@@ -273,10 +310,10 @@ MainActivity extends AppCompatActivity {
                 color = "#87889c";
                 break;
             case "snow":
-                color = "#d6d8da";
+                color = "#B8B4B4";
                 break;
             case "sleet":
-                color = "#d6d8da";
+                color = "#B8B4B4";
                 break;
             case "fog":
                 color = "#87889c";
