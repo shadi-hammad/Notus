@@ -1,5 +1,5 @@
 # Notus
-Notus instant weather app.
+Notus Weather App.
 
 ![notus weather app](https://i.imgur.com/Wy4mklb.png?1)
 
