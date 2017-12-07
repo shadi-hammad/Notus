@@ -1,13 +1,11 @@
 package com.shadihammad.stormy.ui;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 
 import com.shadihammad.stormy.R;
@@ -19,7 +17,6 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 public class DailyForecastActivity extends AppCompatActivity {
 

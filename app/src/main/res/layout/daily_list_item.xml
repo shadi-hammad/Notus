@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="16dp"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:paddingTop="16dp"
-                tools:background="#ffaa00">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:id="@+id/constraintLayoutDay"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             android:paddingBottom="8dp"
+                                             tools:background="#ffaa00">
 
     <ImageView
         android:id="@+id/circleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/bg_temperature"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/bg_temperature"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"/>
 
     <ImageView
         android:id="@+id/iconImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/circleImageView"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/circleImageView"
-        android:layout_toRightOf="@id/circleImageView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="9dp"
         android:paddingLeft="19dp"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+        app:layout_constraintLeft_toRightOf="@+id/circleImageView"
         app:srcCompat="@drawable/clear_day"/>
 
     <TextView
         android:id="@+id/dayNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/iconImageView"
-        android:layout_toRightOf="@id/iconImageView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
         android:paddingLeft="38dp"
         android:textColor="#ffffffff"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iconImageView"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Wednesday"/>
 
     <TextView
         android:id="@+id/temperatureLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/circleImageView"
-        android:layout_alignLeft="@+id/circleImageView"
-        android:layout_alignRight="@+id/circleImageView"
-        android:layout_alignTop="@+id/circleImageView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+        app:layout_constraintLeft_toLeftOf="@+id/circleImageView"
+        app:layout_constraintRight_toRightOf="@+id/circleImageView"
+        app:layout_constraintTop_toTopOf="@+id/circleImageView"
         tools:text="100"/>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

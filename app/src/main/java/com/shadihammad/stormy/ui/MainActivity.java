@@ -15,6 +15,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,7 +64,7 @@ MainActivity extends AppCompatActivity {
     private LocationListener locationListener;
     private double latitude;
     private double longitude;
-    @BindView(R.id.mainLayout) RelativeLayout mMainLayout;
+    @BindView(R.id.mainLayout) ConstraintLayout mMainLayout;
     @BindView(R.id.timeLabel) TextView mTimeLabel;
     @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
     @BindView(R.id.humidityValue) TextView mHumidityValue;
