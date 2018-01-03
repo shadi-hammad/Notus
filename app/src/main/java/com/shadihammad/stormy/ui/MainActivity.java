@@ -27,6 +27,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.shadihammad.stormy.R;
 import com.shadihammad.stormy.weather.Current;
 import com.shadihammad.stormy.weather.Day;
@@ -57,6 +64,7 @@ MainActivity extends AppCompatActivity {
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
     private static final int PERMISSIONS_REQUEST_CODE = 10;
+    private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
     private Forecast mForecast;
     private LocationManager locationManager;
@@ -64,6 +72,7 @@ MainActivity extends AppCompatActivity {
     private LocationListener locationListener;
     private double latitude;
     private double longitude;
+    Place mPlace;
     @BindView(R.id.mainLayout) ConstraintLayout mMainLayout;
     @BindView(R.id.timeLabel) TextView mTimeLabel;
     @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
@@ -293,7 +302,18 @@ MainActivity extends AppCompatActivity {
         mPrecipValue.setText(mCurrent.getmPrecipChance() + "%");
         mSummaryLabel.setText(mCurrent.getmSummary());
         mIconImageView.setImageResource(mCurrent.getIconId());
-        mLocationLabel.setText(getCity());
+        try {
+            if (mPlace != null) {
+                mLocationLabel.setText(mPlace.getName());
+            }
+            else {
+                mLocationLabel.setText(getCity());
+            }
+        }catch (ArrayIndexOutOfBoundsException oob) {
+                mLocationLabel.setText("Name Unavailable");
+                Toast.makeText(this, "Weather data has been retrieved, however location name was unattainable",
+                        Toast.LENGTH_LONG).show();
+        }
         mWindspeedValue.setText(mCurrent.getmWindSpeed() + "");
         mVisibilityValue.setText(mCurrent.getmVisibility() + "");
         mMainLayout.setBackgroundColor(getBackgroundColor());
@@ -445,6 +465,45 @@ MainActivity extends AppCompatActivity {
         intent.putExtra("background_color", getBackgroundColor());
 
         startActivity(intent);
+    }
+
+    @OnClick (R.id.editLocationButton)
+    public void startPlacePicker() {
+        int PLACE_PICKER_REQUEST = 1;
+
+        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
+                .build();
+
+        try {
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
+                    .setFilter(typeFilter).build(this);
+            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+        } catch(GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                mPlace = PlaceAutocomplete.getPlace(this, data);
+                Log.i(TAG, "Place: " + mPlace.getName());
+
+                latitude = mPlace.getLatLng().latitude;
+                longitude = mPlace.getLatLng().longitude;
+                getForecast(latitude, longitude);
+
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(this, data);
+                Toast.makeText(this, "Please select another location", Toast.LENGTH_LONG).show();
+                Log.i(TAG, status.getStatusMessage());
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
     }
 }
 

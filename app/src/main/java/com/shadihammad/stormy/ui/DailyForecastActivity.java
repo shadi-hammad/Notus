@@ -1,12 +1,14 @@
 package com.shadihammad.stormy.ui;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.shadihammad.stormy.R;
 import com.shadihammad.stormy.adapters.DayAdapter;
@@ -46,5 +48,13 @@ public class DailyForecastActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(DailyForecastActivity.this,
+                        "Tap item for weather summary", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
     }
 }

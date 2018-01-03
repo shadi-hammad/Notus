@@ -1,6 +1,8 @@
 package com.shadihammad.stormy.adapters;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +83,8 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.DayViewHolder> {
             String message = String.format("On %s, it will be %s with a high of %s degrees",
                     day, mSummary.toLowerCase().replaceAll("\\.", ""), highTemp);
             Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+            itemView.setAlpha(0);
+            itemView.animate().alpha(1).start();
         }
     }
 }

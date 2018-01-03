@@ -79,6 +79,8 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
                     summary);
 
             Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+            itemView.setAlpha(0);
+            itemView.animate().alpha(1).start();
         }
     }
 
