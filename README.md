@@ -1,9 +1,7 @@
 # Notus
 Notus Weather App.
 
-<a href="https://github.com/shadi-hammad/Notus"><img src="https://i.imgur.com/Wy4mklb.png?1" width="500" height="500"></a>
-
-<a href="https://play.google.com/store/apps/details?id=com.shadihammad.stormy"><img src="https://i.imgur.com/rvD32OV.png" width="350" height="150"></a>
+<a href="https://github.com/shadi-hammad/Notus"><img src="https://i.imgur.com/Wy4mklb.png?1" width="500" height="500"></a>      <a href="https://play.google.com/store/apps/details?id=com.shadihammad.stormy"><img src="https://i.imgur.com/rvD32OV.png" width="350" height="150"></a>
 
 
 
