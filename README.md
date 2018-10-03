@@ -15,7 +15,7 @@ Notus also uses a dynamic background color scheme that automatically matches cur
 
 ## Getting Started
 
-![Notus Weather App](https://i.imgur.com/IT63U44.png)
+![Notus Weather App](https://i.imgur.com/5M9yx0F.png)
 
 Upon opening the application, you will be welcomed a screen similar to the one pictured above. This screen displays the current weather conditions for a particular location. Notus will use location services to fetch your current location (note: Android's location feature must be turned on for this feature to work - Notus will ask the user to enable this feature if it detects that it is disabled). The user can also manually select any city from the location selector screen; this screen can be accessed by tapping on the location selector button on the top-right.
 
