@@ -1,9 +1,9 @@
 # Notus
 Notus Weather App.
 
-![notus weather app](https://i.imgur.com/Wy4mklb.png?1)
+<a href="https://github.com/shadi-hammad/Notus"><img src="https://i.imgur.com/Wy4mklb.png?1" width="500" height="500"></a>
 
-[![Notus Weather App](https://i.imgur.com/rvD32OV.png)](https://play.google.com/store/apps/details?id=com.shadihammad.stormy)
+<a href="https://play.google.com/store/apps/details?id=com.shadihammad.stormy"><img src="https://i.imgur.com/rvD32OV.png" width="350" height="150"></a>
 
 
 
