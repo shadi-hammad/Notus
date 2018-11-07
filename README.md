@@ -30,3 +30,5 @@ Upon launch, the 7-day forecast activity will display weather information for th
 As mentioned earlier, users can manually select a city using the location selector button on the main screen. Once the selector screen is up, users have the ability to type a city name of their choice. Google's Places API features predictive search which will allow the user to select any of the city names that are suggested while they type. An example is shown below:
 
 <a href=""><img src="https://i.imgur.com/7NJE6pj.png" width="400" height="700"></a>
+
+User are able to choose from massive selection of cities both in the United States and internationally. Selecting a city will automatically take the user back to the home screen which will instantaneously update with weather data for the selected location.
