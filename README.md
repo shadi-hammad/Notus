@@ -31,4 +31,4 @@ As mentioned earlier, users can manually select a city using the location select
 
 <a href=""><img src="https://i.imgur.com/7NJE6pj.png" width="400" height="700"></a>
 
-User are able to choose from a massive selection of cities both in the United States and internationally. Selecting a city will automatically take the user back to the home screen which will instantaneously update with weather data for the selected location.
+User are able to choose from a massive selection of cities both domestically and internationally. Selecting a city will automatically return the user back to the home screen which will instantaneously update with weather data for the selected location.
